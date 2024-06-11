@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('comment_images', function (Blueprint $table) {
             $table->id();
             $table->longText('texto')->nullable();
-            $table->date('fecha_creacion')->nullable();
             $table->timestamps();
         });
     }

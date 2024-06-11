@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('titulo');
             $table->string('descripcion')->nullable();
-            $table->date('fecha_subida');
             $table->string('path');
             $table->timestamps();
         });

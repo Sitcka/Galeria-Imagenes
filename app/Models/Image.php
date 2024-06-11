@@ -11,7 +11,7 @@ class Image extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['titulo', 'descripcion', 'fecha_subida', 'path', 'usuario_id'];
+    protected $fillable = ['titulo', 'descripcion', 'path', 'usuario_id'];
     // Relacion entre Imagen y Usuario
     public function usuario()
     {

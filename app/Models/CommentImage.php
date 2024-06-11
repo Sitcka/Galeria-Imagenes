@@ -10,16 +10,16 @@ class CommentImage extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['texto', 'fecha_creacion', 'usuario_id', 'imagen_id', 'created_at'];
+    protected $fillable = ['texto', 'usuario_id', 'imagen_id', 'created_at'];
 
     // Relacion entre Comentario y Usuario
-    public function usuario() : BelongsTo
+    public function usuario(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
     // Relacion entre Comentario e Imagen
-    public function imagen() : BelongsTo
+    public function imagen(): BelongsTo
     {
         return $this->belongsTo(Image::class, 'imagen_id');
     }

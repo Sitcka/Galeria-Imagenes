@@ -38,7 +38,6 @@ class ImageController extends Controller
             'titulo' => 'required | regex:/[a-zA-Z]+/ | max:60', //Con la expresion regular podremos controlar que el titulo sea letras y no numeros
             'descripcion' => ['nullable', 'regex:/[a-zA-Z]+/'], //Esta es otra manera de sintaxis
             'path' => 'required | image | mimes:jpeg,png,svg | max:1100', //Se suele usar mas numeric y gt minimo y lte maximo
-            'fecha_subida' => ['required', 'date'],
             'usuario_id' => ['required', 'numeric']
 
         ]);
@@ -48,7 +47,6 @@ class ImageController extends Controller
             $imagen->titulo = $request->titulo;
             $imagen->descripcion = $request->descripcion;
             $imagen->path = $ruta; // Guardar la ruta en la base de datos
-            $imagen->fecha_subida = $request->fecha_subida;
             $imagen->usuario_id = $request->usuario_id;
             $imagen->save();
         }

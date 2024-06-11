@@ -25,7 +25,6 @@ let editarImagenModal = document.getElementById('editarImagen');
 let form = document.getElementById('formularioEditarImagen');
 let modalTitulo = document.getElementById('titulo-modal');
 let modalDescripcion = document.getElementById('descripcion-modal');
-let modalFechaSubida = document.getElementById('fecha_subida-modal');
 let modalPath = document.getElementById('path-modal');
 let modalIdGaleria = document.getElementById('galeriaId-modal');
 editarImagenModal.addEventListener('show.bs.modal', function (event) {
@@ -34,12 +33,10 @@ editarImagenModal.addEventListener('show.bs.modal', function (event) {
     let id_galeria = editar.getAttribute('data-idGaleria');
     let titulo = editar.getAttribute('data-titulo');
     let descripcion = editar.getAttribute('data-descripcion');
-    let fechaSubida = editar.getAttribute('data-fecha_subida');
     let path = editar.getAttribute('data-path');
     form.action = `/imagen/${id}`;
     modalTitulo.value = titulo;
     modalDescripcion.value = descripcion;
-    modalFechaSubida.value = fechaSubida;
     modalPath.value = path;
     modalIdGaleria.value = id_galeria
 });

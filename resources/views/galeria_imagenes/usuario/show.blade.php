@@ -93,10 +93,6 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
                             <input type="text" class="form-control" id="descripcion" name="descripcion">
                         </div>
                         <div class="mb-3">
-                            <label for="fecha" class="col-form-label">Fecha:</label>
-                            <input type="date" class="form-control" id="fecha_subida" name="fecha_subida">
-                        </div>
-                        <div class="mb-3">
                             Selecciona la imagen:
                             <input type="file" class="form-control" id="path" name="path">
                         </div>
@@ -170,7 +166,6 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
                                 <label for="descripcion" class="col-form-label">Descripción:</label>
                                 <input type="text" class="form-control" id="descripcion-modal" name="descripcion">
                             </div>
-                            <input type="hidden" class="form-control" id="fecha_subida-modal" name="fecha_subida">
                             <input type="hidden" id="path-modal" name="path">
                             <input type="hidden" id=" " name="es" value="usuario">
                             <input type="hidden" class="form-control" id="usuario_id" name="usuario_id" value="{{auth()->user()->id}}">
