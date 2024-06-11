@@ -1,0 +1,280 @@
+body {
+    background-color: #E9ECF4;
+}
+
+.seccion-estilo {
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-family: 'Rubik Dirt', cursive;
+}
+
+.seccion-oscura {
+    color: white;
+    background-color: #1b1b32;
+}
+
+.seccion-clara {
+    color: black;
+    background-color: white;
+}
+
+.seccion-titulo {
+    font-size: 2rem;
+    padding: 15px 0;
+    font-family: 'Rubik Dirt', cursive;
+}
+
+.seccion-descripcion {
+    font-size: 1.2rem;
+    color: #584e4e;
+}
+
+.seccion-texto {
+    font-size: 1.2rem;
+}
+
+.texto-negro {
+    color: black;
+}
+
+.texto-blanco {
+    color: white;
+}
+
+/* Navegacion */
+#navegacion {
+    background-color: #1b1b32;
+}
+
+#navegacion i {
+    width: 100%;
+    height: auto;
+    padding: 8px;
+    font-size: xx-large;
+}
+
+
+.navbar-toggler {
+    color: #e2e2ec;
+}
+
+/* Experiencia */
+
+.experiencia .columna {
+    padding: 10px;
+    width:100%;
+    height: 70%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    transition: all 0.2s ease-in;
+}
+
+.experiencia .columna:hover {
+    color: white;
+    background-color: #1b1b32;
+}
+
+.experiencia i {
+    font-size: 2.5rem;
+    color: #7ade30;
+    background-color: #0a0a23;
+    padding: 8px 19px;
+    border-radius: 50%;
+}
+
+.experiencia-titulo {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.imagen-contenedor {
+    width: 100%;
+    height: 100%;
+    padding-left: 250px;
+}
+
+.imagen-contenedor>img {
+    height: 290px;
+    width: 400px;
+}
+
+/* Testimonios */
+
+.testimonios {
+    padding: 40px 40px 80px 40px;
+}
+
+.testimonios .carousel {
+    max-width: 800px;
+}
+
+.carousel-item {
+    height: 500px;
+}
+
+.carousel-item .container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.testimonio-imagen {
+    height: 150px;
+    width: 150px;
+    margin: 10px 10px 20px 10px;
+}
+
+.testimonio-texto {
+    max-width: 70%;
+    font-size: 20px;
+    text-align: center;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.testimonio-info {
+    font-weight: bold;
+    text-align: center;
+}
+
+.testimonio-info p {
+    margin-bottom: 0;
+}
+
+.testimonio-footer .cliente {
+    font-size: 1.2rem;
+}
+
+.testimonio-info .cargo {
+    font-size: 0.9rem;
+    color: #656060;
+}
+
+/* Footer */
+
+footer {
+    min-height: 300px;
+}
+
+.footer-logo {
+    height: 80px;
+    width: 80px;
+    margin: 10px;
+}
+
+.footer-texto {
+    font-size: 1.5rem;
+    padding: 20px;
+    margin-bottom: 30px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.iconos-redes-sociales a {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    margin: 10px;
+    border: 2px solid white;
+    border-radius: 50%;
+    transition: all 0.2s ease-in;
+}
+
+.iconos-redes-sociales i {
+    color: white;
+    font-size: 1.5rem;
+    transition: all 0.2s ease-in;
+}
+
+.iconos-redes-sociales a:hover {
+    background-color: white;
+    border: 2px solid rgb(13, 110, 253);
+}
+
+.iconos-redes-sociales a:hover i {
+    color: black;
+}
+
+.derechos-de-autor {
+    font-size: 15px;
+    color: #aeaeae;
+    padding: 20px;
+}
+
+/* Welcome Responsive */
+/* Responsividad */
+
+/* General responsive adjustments */
+@media (max-width: 1200px) {
+    .seccion-estilo {
+        margin: 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    .experiencia .columna {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: center;
+    }
+    .imagen-contenedor {
+        padding-left: 0;
+        padding-top: 20px;
+    }
+    .imagen-contenedor>img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .experiencia-titulo {
+        font-size: 20px;
+    }
+    .experiencia i {
+        font-size: 2rem;
+    }
+    .testimonio-texto {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 576px) {
+    .testimonio-imagen {
+        height: 100px;
+        width: 100px;
+    }
+    .testimonio-texto {
+        font-size: 16px;
+    }
+    .iconos-redes-sociales a {
+        width: 40px;
+        height: 40px;
+        margin: 5px;
+    }
+    .iconos-redes-sociales i {
+        font-size: 1.2rem;
+    }
+    footer {
+        padding: 20px;
+    }
+}
+@media (min-width: 1400px) {
+    .experiencia  {
+        justify-content: center;
+    }
+}

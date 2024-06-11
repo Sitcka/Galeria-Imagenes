@@ -1,0 +1,288 @@
+body {
+    background-color: #E9ECF4;
+}
+
+/* Vista oscura/clara */
+.seccion-oscura {
+    color: white;
+    background-color: #1b1b32;
+}
+
+/* HOVER CONTENEDORES/ICONOS */
+.cambio-color .columna {
+    transition: all 0.2s ease-in;
+}
+
+.cambio-color .columna:hover {
+    color: white;
+    background-color: #1b1b32;
+}
+
+.cambio-color .columna:hover i {
+    /* font-size: medium; */
+    color: #7ade30;
+    padding: 8px 10px;
+    border-radius: 50%;
+}
+
+
+.cambio-color i {
+    /* font-size: large; */
+    padding: 8px 10px;
+    border-radius: 50%;
+}
+
+/* Navegacion */
+#navegacion {
+    background-color: #1b1b32;
+}
+
+#navegacion button>i {
+    width: 100%;
+    height: auto;
+    padding: 8px;
+    font-size: xx-large;
+}
+
+.navbar-toggler {
+    color: #fff;
+}
+
+#icono {
+    font-size: xx-large;
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown-menu[data-bs-popper] {
+    left: -60px;
+}
+
+a {
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+/* Perfil */
+.operaciones {
+    margin-top: 70px;
+}
+
+/* Comunidad */
+#comunidad-contenedor {
+    width: 50%;
+    margin-top: 100px;
+}
+
+/* Galeria */
+#galeria-vacia {
+    width: 100%;
+    height: auto;
+    /* border-radius: 8px; */
+    background-color: rgb(165, 170, 175);
+    margin: 10px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+#galeria-vacia>a>i {
+    font-size: 150px;
+    cursor: pointer;
+}
+
+#galeria-vacia>a {
+    text-decoration: none;
+    color: black;
+}
+
+#galeria {
+    margin-bottom: 20px;
+}
+
+#titulo-galeria {
+    text-align: center;
+    /* margin-left: 45px; */
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+
+/* IMAGENES USUARIO SHOW */
+.iconos {
+    font-size: xx-large;
+    color: black;
+}
+
+#show-usuario-container {
+    padding: 20px;
+}
+
+.show-galeria-container {
+    /* height: 69%; */
+    padding: 27px;
+    margin-bottom: 100px;
+}
+
+.tamaño-imagenes {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+/* ctrl + l toda la linea */
+
+.tamaño-imagenes-index {
+    width: 100%;
+    /* height: 600px; */
+    object-fit: contain;
+}
+
+/* OVERLAY OPERACIONES */
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-item img {
+    border-radius: 0;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    top: 60px;
+    left: 4.5%;
+    width: 91%;
+    height: 69%;
+    background: rgba(250, 255, 255, 0.875);
+    /* Ajusta el color y la opacidad del overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.gallery-item.show-overlay .overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.overlay ul {
+    list-style: none;
+    padding: 0;
+}
+
+.overlay .nav-link {
+    color: white;
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.toggle-overlay {
+    cursor: pointer;
+}
+
+/* DESCRIPCION DE IMAGEN OVERLAY */
+.image-container {
+    position: relative;
+    perspective: 1000px;
+}
+
+.image-container,
+.description-overlay {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.image-container.rotated {
+    transform: rotateY(180deg);
+}
+
+.description-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotateY(180deg);
+}
+
+.btn-back {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.card {
+    position: relative;
+}
+
+
+/* COMENTARIOS */
+#caja-comentarios {
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    max-height: 150px;
+    overflow-y: auto;
+    scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
+    scrollbar-width: thin;
+    overflow-y: auto;
+    width: 100%;
+    word-wrap: break-word;
+}
+
+/* Esto es para el contenedor que contendrá las opciones del comentario */
+#contenedor-texto-comentario {
+    max-height: 80px;
+    width: 90%;
+    border: 1px slategray;
+    word-wrap: break-word;
+    display: flex;
+    justify-content: space-between;
+}
+
+#contenedor-texto-comentario>p {
+    width: 80%;
+}
+
+#contenedor-texto-comentario i:hover {
+    cursor: pointer;
+}
+
+#eliminarComentarioModal {
+    margin-left: 200px;
+    margin-top: 200px;
+    width: 70%;
+}
+
+/* Modal Body */
+.modal-body{
+    padding: 0;
+}
+
+/* Animacion para eliminar comentario */
+@keyframes eliminarComentario {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+        height: 0;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.eliminar-animacion {
+    animation: eliminarComentario 0.5s ease-in-out forwards;
+}
