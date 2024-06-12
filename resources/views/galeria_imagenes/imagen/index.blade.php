@@ -10,11 +10,16 @@
                 @foreach($imagenes as $imagen)
                 <div class="col-xl-12 col-lg-12 col-md-12 mb-12 p-3">
                     <div class="bg-white rounded shadow-sm">
-                        <a class="lightbox" href="{{ asset('storage/' . $imagen->path) }}"><img src="{{ asset('storage/' . $imagen->path) }}" alt="{{ $imagen->titulo }}" class="img-fluid card-img-top tamaño-imagenes-index">
+                        <div class="d-flex align-items-center g-5">
+                        <img src="{{ asset('storage/' . $imagen->path) }}" alt="{{ $imagen->titulo }}" class="imagen-usuario rounded-circle">
+                        <h5 class="text-dark">{{auth()->user()->name}}</h5>
+                        </div>
+                        <a class="lightbox" href="{{ asset('storage/' . $imagen->path) }}">
+                            <img src="{{ asset('storage/' . $imagen->path) }}" alt="{{ $imagen->titulo }}" class="img-fluid card-img-top tamaño-imagenes-index">
                         </a>
                         <div class="p-4">
                             <h5>
-                                <p class="text-dark text-center">{{ $imagen->titulo }}</p>
+                                <p class="text-dark text-start">{{ $imagen->titulo }}</p>
                             </h5>
                             <p class="small text-muted mb-2">{{ $imagen->descripcion }}</p>
                             <i class="bi bi-heart"></i>

@@ -73,6 +73,11 @@ a {
     width: 50%;
     margin-top: 100px;
 }
+.imagen-usuario{
+    height: 50px;
+    width: 50px;
+    margin: 10px 10px 20px 10px;
+}
 
 /* Galeria */
 #galeria-vacia {

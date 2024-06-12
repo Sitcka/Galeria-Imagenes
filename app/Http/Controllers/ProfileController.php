@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -26,16 +27,28 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
+        $user->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        if ($request->hasFile('image_profile')) {
+            // Esto es para eliminar la anterior imagen del ususario, asi q¡no la tengo en vano
+            if ($user->image_profile && Storage::disk('public')->exists($user->image_profile)) {
+                Storage::disk('public')->delete($user->image_profile);
+            }
+            // Aqui guardare la nueva imagen despues de eliminar la anterior del usuario
+            $imagePath = $request->file('image_profile')->store('image_profiles', 'public');
+            $user->image_profile = $imagePath;
         }
 
-        $request->user()->save();
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
+        }
+
+        $user->save();
 
         return Redirect::route('galeria_imagenes.usuario.edit')->with('status', 'profile-updated');
     }
+
 
     /**
      * Delete the user's account.
@@ -49,6 +62,10 @@ class ProfileController extends Controller
         $user = $request->user();
 
         Auth::logout();
+        // Eliminar la imagen de perfil si existe
+        if ($user->image_profile && Storage::disk('public')->exists($user->image_profile)) {
+            Storage::disk('public')->delete($user->image_profile);
+        }
 
         $user->delete();
 
