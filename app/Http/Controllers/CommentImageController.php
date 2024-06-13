@@ -36,7 +36,6 @@ class CommentImageController extends Controller
         //
         $request->validate([
             'texto' => 'required | regex:/[a-zA-Z]+/ | max:100',
-            'fecha_creacion' => ['nullable', 'date'],
             'usuario_id' => 'required | numeric',
             'imagen_id' => 'required | numeric'
         ]);

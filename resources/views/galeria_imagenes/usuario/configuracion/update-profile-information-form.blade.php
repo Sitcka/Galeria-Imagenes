@@ -5,7 +5,7 @@
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-            {{ __("Actualiza el nombre y correo electronico de tu cuenta.") }}
+            {{ __("Actualiza el nombre y correo electrónico de tu cuenta.") }}
         </p>
     </header>
 
@@ -13,7 +13,7 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('galeria_imagenes.usuario.configuracion.update') }}" enctype="multipart/form-data" class="mt-4">
+    <form method="post" action="{{ route('galeria_imagenes.usuario.configuracion.update') }}" enctype="multipart/form-data" class="mt-4" id="profileForm">
         @csrf
         @method('patch')
 
@@ -22,7 +22,7 @@
             <div class="m-3">
                 <img src="{{ $user->image_profile ? asset('storage/' . $user->image_profile) : asset('storage/image_profiles/defecto_usuario.png') }}" alt="Imagen de Perfil" class="rounded-circle" style="width: 150px; height: 150px; object-fit: cover;">
             </div>
-            <input id="image_profile" name="image_profile" type="file" class="form-control @error('image_profile') is-invalid @enderror">
+            <input id="image_profile" name="image_profile" type="file" class="form-control @error('image_profile') is-invalid @enderror" accept="image/*">
             @error('image_profile')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -73,3 +73,4 @@
         </div>
     </form>
 </section>
+@vite('resources/js/validacionEditUser.js')

@@ -36,6 +36,25 @@ backButtons.forEach(button => {
     });
 });
 
+// Evento para pasar informacion al editar la imagen del show del usuario
+let editarImagenModal = document.getElementById('editarImagen');
+let form = document.getElementById('formularioEditarImagen');
+let modalTitulo = document.getElementById('titulo-modal');
+let modalDescripcion = document.getElementById('descripcion-modal');
+let modalPath = document.getElementById('path-modal');
+editarImagenModal.addEventListener('show.bs.modal', function (event) {
+    let editar = event.relatedTarget;
+    let id = editar.getAttribute('data-id');
+    let id_galeria = editar.getAttribute('data-idGaleria');
+    let titulo = editar.getAttribute('data-titulo');
+    let descripcion = editar.getAttribute('data-descripcion');
+    let path = editar.getAttribute('data-path');
+    form.action = `/imagen/${id}`;
+    modalTitulo.value = titulo;
+    modalDescripcion.value = descripcion;
+    modalPath.value = path;
+});
+
 // Evento para eliminar una imagen subida por el usuario
 let eliminarImagenModalUsuario = document.getElementById('eliminarImagenUsuario');
 let formEliminarUsuario = document.getElementById('formularioEliminarImagenUsuario');
@@ -73,7 +92,7 @@ eliminarGaleriaModalUsuario.addEventListener('show.bs.modal', function (event) {
 
 // Evento para eliminar las flechas del carrusel 
 var carousel = new bootstrap.Carousel(document.getElementById('carrusel-usuario-galeria{{$galeria->id}}'), {
-    interval: 1000,
+    interval: 500,
     wrap: true
 });
 

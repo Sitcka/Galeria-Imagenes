@@ -1,6 +1,7 @@
 @extends('galeria_imagenes.common.principal')
 @section('title', 'Inicio | Home')
 @vite('resources/js/modalIndexUsuario.js')
+<!-- @vite('resources/js/modalUsuario.js') -->
 @section('content')
 
 <section>
@@ -11,7 +12,7 @@
                 <div class="col-xl-12 col-lg-12 col-md-12 mb-12 p-3">
                     <div class="bg-white rounded shadow-sm">
                         <div class="d-flex align-items-center g-5">
-                        <img src="{{ asset('storage/' . $imagen->path) }}" alt="{{ $imagen->titulo }}" class="imagen-usuario rounded-circle">
+                        <img img src="{{ auth()->user()->image_profile ? asset('storage/' . auth()->user()->image_profile) : asset('storage/image_profiles/defecto_usuario.png') }}" alt="Imagen de Perfil" class="imagen-usuario rounded-circle">
                         <h5 class="text-dark">{{auth()->user()->name}}</h5>
                         </div>
                         <a class="lightbox" href="{{ asset('storage/' . $imagen->path) }}">
@@ -31,6 +32,7 @@
                 </div>
                 @endforeach
             </div>
+            <!-- Modal para realizar un comentario y para ver estos mismos -->
             <div class="modal fade" id="comentarUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -66,6 +68,7 @@
                     </div>
                 </div>
             </div>
+            <!-- Fin de ver comentario o crear uno -->
             <!-- Modal para eliminar el comentario -->
             <div class="modal fade" id="eliminarComentarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">

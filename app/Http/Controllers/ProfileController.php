@@ -29,23 +29,24 @@ class ProfileController extends Controller
     {
         $user = $request->user();
         $user->fill($request->validated());
-
+    
         if ($request->hasFile('image_profile')) {
-            // Esto es para eliminar la anterior imagen del ususario, asi q¡no la tengo en vano
+            // Eliminar la imagen anterior del usuario solo si se proporciona una nueva imagen
             if ($user->image_profile && Storage::disk('public')->exists($user->image_profile)) {
                 Storage::disk('public')->delete($user->image_profile);
             }
-            // Aqui guardare la nueva imagen despues de eliminar la anterior del usuario
+    
+            // Guardar la nueva imagen
             $imagePath = $request->file('image_profile')->store('image_profiles', 'public');
             $user->image_profile = $imagePath;
         }
-
+    
         if ($user->isDirty('email')) {
             $user->email_verified_at = null;
         }
-
+    
         $user->save();
-
+    
         return Redirect::route('galeria_imagenes.usuario.edit')->with('status', 'profile-updated');
     }
 

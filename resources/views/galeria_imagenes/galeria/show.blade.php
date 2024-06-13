@@ -1,6 +1,7 @@
 @extends('galeria_imagenes.common.principal')
 @section('title' , $galeria->titulo)
 @vite('resources/js/overlay.js')
+@vite('resources/js/modalGaleria.js')
 <link href="
 https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
 " rel="stylesheet">
@@ -111,10 +112,12 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
                         <div class="mb-3" id="input-titulo">
                             <label for="titulo" class="col-form-label">Título:</label>
                             <input type="text" class="form-control" id="titulo-modal" name="titulo" value="" required>
+                            <div id="titulo-error" class="text-danger"></div>
                         </div>
                         <div class="mb-3" id="input-descripcion">
                             <label for="descripcion" class="col-form-label">Descripción:</label>
                             <input type="text" class="form-control" id="descripcion-modal" name="descripcion">
+                            <div id="descripcion-error" class="text-danger"></div>
                         </div>
                         <input type="hidden" id="path-modal" name="path">
                         <input type="hidden" id="galeriaId-modal" name="galeria_id">
@@ -151,10 +154,9 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
             </div>
         </div>
     </div>
+    @vite('resources/js/validacion-galeria.js')
     <!-- JavaScript para inicializar BaguetteBox -->
-    <script src="
-https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.js
-"></script>
+    <script src="https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             baguetteBox.run('.baguetteBoxFour', {

@@ -5,20 +5,23 @@ let descripcion_modalComentario = document.getElementById('descripcion-modalCome
 let imagen_idComentar = document.getElementById('id_imagenModal');
 let caja_comentariosContenedor = document.getElementById('caja-comentarios');
 
-comentarUsuarioModal = document.addEventListener('show.bs.modal', function (event) {
-    let boton = event.relatedTarget;
-    let imagen_idComentario = boton.getAttribute('data-idComentarioImagen');
-    let imagen_tituloComentario = boton.getAttribute('data-tituloComentarioImagen');
-    let imagen_pathComentario = boton.getAttribute('data-pathImagenComentario');
-    let imagen_descripcionComentarioImagen = boton.getAttribute('data-descripcionComentarioImagen');
-    imagen_modalComentario.src = imagen_pathComentario;
-    imagen_modalComentario.alt = imagen_tituloComentario;
-    titulo_modalComentario.textContent = imagen_tituloComentario;
-    descripcion_modalComentario.textContent = imagen_descripcionComentarioImagen;
-    // Para el formulario de comentar imagen
-    imagen_idComentar.value = imagen_idComentario;
-    // Caja de comentarios
-    cargarComentariosActualizados();
+document.addEventListener('show.bs.modal', function (event) {
+    if (event.target.id === 'comentarUsuario') {
+        let boton = event.relatedTarget;
+        let imagen_idComentario = boton.getAttribute('data-idComentarioImagen');
+        let imagen_tituloComentario = boton.getAttribute('data-tituloComentarioImagen');
+        let imagen_pathComentario = boton.getAttribute('data-pathImagenComentario');
+        let imagen_descripcionComentarioImagen = boton.getAttribute('data-descripcionComentarioImagen');
+        
+        imagen_modalComentario.src = imagen_pathComentario;
+        imagen_modalComentario.alt = imagen_tituloComentario;
+        titulo_modalComentario.textContent = imagen_tituloComentario;
+        descripcion_modalComentario.textContent = imagen_descripcionComentarioImagen;
+        // Para el formulario de comentar imagen
+        imagen_idComentar.value = imagen_idComentario;
+        // Caja de comentarios
+        cargarComentariosActualizados(imagen_idComentario);
+    }
 });
 
 // Esto es para crear de manera dinámica un comentario, al momento de crear el comentario se verá reflejado en la caja de comentarios
@@ -30,50 +33,50 @@ formulario_comentario.addEventListener('submit', function (event) {
         method: 'POST',
         body: formData
     })
-        .then(response => response.json())
-        .then(data => {
-            let caja_vacia = document.getElementById('caja-vacia');
-            if (caja_vacia) {
-                caja_vacia.remove();
-            }
-            crearComentario(caja_comentariosContenedor, data);
-            // Limpia el formulario, es decir el campo donde se realiza el comentario
-            document.getElementById('comentario-formularioModal').reset();
-        })
-        .catch(error => console.error('Error:', error));
+    .then(response => response.json())
+    .then(data => {
+        let caja_vacia = document.getElementById('caja-vacia');
+        if (caja_vacia) {
+            caja_vacia.remove();
+        }
+        crearComentario(caja_comentariosContenedor, data);
+        // Limpia el formulario, es decir el campo donde se realiza el comentario
+        this.reset();
+    })
+    .catch(error => console.error('Error:', error));
 });
 
 let confirmarEliminar = document.getElementById('confirmarEliminarComentario');
 confirmarEliminar.addEventListener('click', function () {
-    let comentarioId = document.getElementById('comentario_id');
+    let comentarioId = document.getElementById('comentario_id').value;
     let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    let id = comentarioId.value;
-    fetch(`/comentario/${id}`, {
-        method: 'delete',
+    
+    fetch(`/comentario/${comentarioId}`, {
+        method: 'DELETE',
         headers: {
             'X-CSRF-TOKEN': token
         }
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Eliminar el comentario del DOM
-                let comentarioEliminar = document.getElementById(id);
-                if (comentarioEliminar) {
-                    comentarioEliminar.classList.add('eliminar-animacion');
-                    setTimeout(() => {
-                        comentarioEliminar.remove();
-                        cargarComentariosActualizados();
-                    }, 500);
-                }
-                // Cerrar el modal
-                let eliminarComentarioModal = bootstrap.Modal.getInstance(document.getElementById('eliminarComentarioModal'));
-                eliminarComentarioModal.hide();
-            } else {
-                console.error('Error eliminando el comentario:', data.message);
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Eliminar el comentario del DOM
+            let comentarioEliminar = document.getElementById(comentarioId);
+            if (comentarioEliminar) {
+                comentarioEliminar.classList.add('eliminar-animacion');
+                setTimeout(() => {
+                    comentarioEliminar.remove();
+                    cargarComentariosActualizados(imagen_idComentar.value);
+                }, 500);
             }
-        })
-        .catch(error => console.error('Error:', error));
+            // Cerrar el modal
+            let eliminarComentarioModal = bootstrap.Modal.getInstance(document.getElementById('eliminarComentarioModal'));
+            eliminarComentarioModal.hide();
+        } else {
+            console.error('Error eliminando el comentario:', data.message);
+        }
+    })
+    .catch(error => console.error('Error:', error));
 });
 
 // Funciones cargar los comentarios
@@ -125,17 +128,13 @@ function crearComentario(contenedor, response) {
     });
 }
 
-function cargarComentariosActualizados() {
-    let caja_comentariosContenedor = document.getElementById('caja-comentarios');
-    let botonCargar = document.querySelector('[data-bs-target="#comentarUsuario"]');
-    let imagen_idComentario = botonCargar.getAttribute('data-idComentarioImagen');
+function cargarComentariosActualizados(imagen_idComentario) {
     fetch(`/comentario/${imagen_idComentario}/comentariosImagen`)
         .then(response => response.json())
         .then(data => {
             caja_comentariosContenedor.innerHTML = ''; // Limpiar los comentarios anteriores
             if (data.length > 0) {
                 data.forEach(comentario => {
-
                     crearComentario(caja_comentariosContenedor, comentario);
                 });
             } else {
@@ -144,4 +143,3 @@ function cargarComentariosActualizados() {
         })
         .catch(error => console.error('Error:', error));
 }
-

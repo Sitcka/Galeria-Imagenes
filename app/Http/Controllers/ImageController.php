@@ -35,8 +35,8 @@ class ImageController extends Controller
     {
         //
         $request->validate([
-            'titulo' => 'required | regex:/[a-zA-Z]+/ | max:60', //Con la expresion regular podremos controlar que el titulo sea letras y no numeros
-            'descripcion' => ['nullable', 'regex:/[a-zA-Z]+/'], //Esta es otra manera de sintaxis
+            'titulo' => ['required', `regex:/^[a-zA-Z0-9.,()"' ]+$/`, 'max:30'],
+            'descripcion' => ['nullable', `regex:/^[a-zA-Z0-9.,()"' ]+$/`, 'max:100'],
             'path' => 'required | image | mimes:jpeg,png,svg | max:1100', //Se suele usar mas numeric y gt minimo y lte maximo
             'usuario_id' => ['required', 'numeric']
 
@@ -76,9 +76,8 @@ class ImageController extends Controller
     {
         // Validar los datos recibidos
         $request->validate([
-            'titulo' => 'required|regex:/[a-zA-Z]+/|max:60',
-            'descripcion' => 'nullable|regex:/[a-zA-Z]+/',
-            'fecha_subida' => 'required|date',
+            'titulo' => ['required', `regex:/^[a-zA-Z0-9.,()"' ]+$/`, 'max:30'],
+            'descripcion' => ['nullable', `regex:/^[a-zA-Z0-9.,()"' ]+$/`, 'max:100'],
             'usuario_id' => 'required|numeric',
             'path' => 'required', // La validación 'sometimes' permite que el campo sea opcional
         ]);
@@ -88,17 +87,36 @@ class ImageController extends Controller
         // Actualizar los campos con los datos recibidos
         $imagen->titulo = $request->titulo;
         $imagen->descripcion = $request->descripcion;
-        $imagen->fecha_subida = $request->fecha_subida;
         $imagen->usuario_id = $request->usuario_id;
         $imagen->path = $request->path;
 
         // Guardar los cambios en la base de datos
-        $imagen->update();
-        if (strcmp($request->es, "usuario") !== 0) {
-            return redirect()->route('galeria.show', $request->galeria_id);
-        } else {
-            return redirect()->route('usuario.show', $imagen->usuario_id);
-        }
+        $imagen->save();
+       
+        return redirect()->route('usuario.show', $imagen->usuario_id);
+    }
+
+    public function editarImagenGaleria(Request $request, string $id)
+    {
+        // Validar los datos recibidos
+        $request->validate([
+            'titulo' => ['required', `regex:/^[a-zA-Z0-9.,()"' ]+$/`, 'max:30'],
+            'descripcion' => ['nullable', `regex:/^[a-zA-Z0-9.,()"' ]+$/`, 'max:100'],
+            'usuario_id' => 'required|numeric',
+            'path' => 'required',
+        ]);
+
+        // Encontrar la imagen por ID
+        $imagen = Image::find($id);
+        // Actualizar los campos con los datos recibidos
+        $imagen->titulo = $request->titulo;
+        $imagen->descripcion = $request->descripcion;
+        $imagen->usuario_id = $request->usuario_id;
+        $imagen->path = $request->path;
+
+        // Guardar los cambios en la base de datos
+        $imagen->save();
+        return redirect()->route('galeria.show', $request->galeria_id);
     }
 
     /**
@@ -107,8 +125,8 @@ class ImageController extends Controller
     public function destroy(string $id)
     {
         $imagen = Image::find($id);
-        // Podria usar directamente delete, sin embargo la funcion disk() especifica el l ugar donde se almaceno las imagenes.
-        // Lo que hare primeramente es saber si 
+        // Podria usar directamente delete, sin embargo la funcion disk() especifica el lugar donde se almaceno las imagenes.
+        // Lo que hare primeramente es saber si existe la imagen
         if (Storage::disk('public')->exists($imagen->path)) {
             // En ese caso se eliminara la imagen, la cual esta almacenada localmente
             Storage::disk('public')->delete(($imagen->path));

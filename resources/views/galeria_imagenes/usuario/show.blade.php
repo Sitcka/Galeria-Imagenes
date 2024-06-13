@@ -39,10 +39,12 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
                         <div class="mb-3">
                             <label for="titulo" class="col-form-label">Título:</label>
                             <input type="text" class="form-control" id="titulo" name="titulo" required>
+                            <div class="invalid-feedback" id="tituloError"></div>
                         </div>
                         <div class="mb-3">
                             <label for="descripcion" class="col-form-label">Descripción:</label>
                             <input type="text" class="form-control" id="descripcion" name="descripcion">
+                            <div class="invalid-feedback" id="descripcionError"></div>
                         </div>
                         <div class="mb-3">
                             <label for="imagenes" class="col-form-label">Selecciona las imágenes:</label>
@@ -72,6 +74,7 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
             </div>
         </div>
     </div>
+
     <!-- Fin de modal para crear una galeria -->
     <!-- Ventana modal para subir una imagen -->
     <div class="modal fade" id="añadirImagen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -87,14 +90,17 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
                         <div class="mb-3">
                             <label for="titulo" class="col-form-label">Título:</label>
                             <input type="text" class="form-control" id="titulo" name="titulo" required>
+                            <div id="titulo-error" class="text-danger"></div>
                         </div>
                         <div class="mb-3">
                             <label for="descripcion" class="col-form-label">Descripción:</label>
                             <input type="text" class="form-control" id="descripcion" name="descripcion">
+                            <div id="descripcion-error" class="text-danger"></div>
                         </div>
                         <div class="mb-3">
                             Selecciona la imagen:
                             <input type="file" class="form-control" id="path" name="path">
+                            <div id="pathError" class="text-danger"></div>
                         </div>
                         <input type="hidden" class="form-control" id="usuario_id" name="usuario_id" value="{{ auth()->user()->id }}">
                     </form>
@@ -110,7 +116,7 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
     <br>
     <br>
     <!-- Imagenes subidas por el usuario -->
-    <div class="row row-cols-sm-2 row-cols-md-3 row-cols-1 g-4 baguetteBoxFour gallery">
+    <div class="row row-cols-sm-2 row-cols-md-3 row-cols-1 g-4 baguetteBoxFive gallery">
         @foreach($usuario->imagenesOrdenadas() as $imagen)
         <div class="col cambio-color" id="imagen-perfil">
             <div class="columna card gallery-item" id="show-usuario-container">
@@ -145,6 +151,7 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
             </div>
         </div>
         @endforeach
+        <!-- Fin de imagenes subidas por el usuario -->
 
         <!-- Ventana Modal para editar la imagen -->
         <div class="modal fade" id="editarImagen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -161,13 +168,14 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
                             <div class="mb-3" id="input-titulo">
                                 <label for="titulo" class="col-form-label">Título:</label>
                                 <input type="text" class="form-control" id="titulo-modal" name="titulo" value="" required>
+                                <div id="titulo-error" class="text-danger"></div>
                             </div>
                             <div class="mb-3" id="input-descripcion">
                                 <label for="descripcion" class="col-form-label">Descripción:</label>
                                 <input type="text" class="form-control" id="descripcion-modal" name="descripcion">
+                                <div id="descripcion-error" class="text-danger"></div>
                             </div>
                             <input type="hidden" id="path-modal" name="path">
-                            <input type="hidden" id=" " name="es" value="usuario">
                             <input type="hidden" class="form-control" id="usuario_id" name="usuario_id" value="{{auth()->user()->id}}">
                         </form>
                     </div>
@@ -281,10 +289,12 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
                             <div class="mb-3" id="input-titulo">
                                 <label for="titulo" class="col-form-label">Título:</label>
                                 <input type="text" class="form-control" id="titulo-galeria_modal" name="titulo" value="" required>
+                                <div id="titulo-error" class="text-danger"></div>
                             </div>
                             <div class="mb-3" id="input-descripcion">
                                 <label for="descripcion" class="col-form-label">Descripción:</label>
                                 <input type="text" class="form-control" id="descripcion-galeria_modal" name="descripcion">
+                                <div id="descripcion-error" class="text-danger"></div>
                             </div>
                             <input type="hidden" class="form-control" id="usuario_id" name="usuario_id" value="{{auth()->user()->id}}">
                         </form>
@@ -321,14 +331,15 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
         </div>
         <!-- Fin de Modal eliminar galeria -->
     </div>
+    @vite('resources/js/validacion-show-usuario.js')
     <script src="https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            baguetteBox.run('.baguetteBoxFour', {
-                buttons: false,
+        window.addEventListener('load', function() {
+            baguetteBox.run('.baguetteBoxFive', {
                 captions: function(element) {
                     return element.getElementsByTagName('img')[0].alt;
-                }
+                },
+                buttons: false
             });
         });
     </script>

@@ -31,8 +31,8 @@ class GaleryController extends Controller
     {
         //
         $request->validate([
-            'titulo' => 'required | regex:/[a-zA-Z]+/ | max:100',
-            'descripcion' => ['nullable', 'regex:/[a-zA-Z]+/'],
+            'titulo' => ['required',`regex:/^[a-zA-Z0-9.,()"' ]+$/`,'max:30'],
+            'descripcion' => ['nullable', `regex:/^[a-zA-Z0-9.,()"' ]+$/`, 'max:100'],
             'usuario_id' => ['required', 'numeric'],
             'imagenes' => ['nullable', 'array']
         ]);
@@ -69,8 +69,8 @@ class GaleryController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'titulo' => 'required | regex:/[a-zA-Z]+/ | max:100',
-            'descripcion' => ['nullable', 'regex:/[a-zA-Z]+/'],
+            'titulo' => ['required',`regex:/^[a-zA-Z0-9.,()"' ]+$/`,'max:30'],
+            'descripcion' => ['nullable', `regex:/^[a-zA-Z0-9.,()"' ]+$/`, 'max:100'],
             'usuario_id' => ['required', 'numeric'],
         ]);
         $galeria = Galery::findOrFail($id);

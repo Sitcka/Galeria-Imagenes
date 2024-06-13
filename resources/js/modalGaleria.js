@@ -34,7 +34,7 @@ editarImagenModal.addEventListener('show.bs.modal', function (event) {
     let titulo = editar.getAttribute('data-titulo');
     let descripcion = editar.getAttribute('data-descripcion');
     let path = editar.getAttribute('data-path');
-    form.action = `/imagen/${id}`;
+    form.action = `/imagen/${id}/editarImagenGaleria`;
     modalTitulo.value = titulo;
     modalDescripcion.value = descripcion;
     modalPath.value = path;
