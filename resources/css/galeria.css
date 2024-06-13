@@ -25,6 +25,11 @@ body {
     border-radius: 50%;
 }
 
+.cambio-color .columna:hover .description-overlay {
+    color: white;
+    background-color: #1b1b32;
+}
+
 
 .cambio-color i {
     /* font-size: large; */
@@ -78,6 +83,16 @@ a {
     height: 50px;
     width: 50px;
     margin: 10px 10px 20px 10px;
+}
+.imagen-usuario-show {
+    height: 200px;
+    width: 200px;
+    margin: 10px 10px 20px 10px;
+}
+.imagen-usuario-navegacion {
+    height: 40px;
+    width: 40px;
+    /* margin: 10px 10px 20px 10px; */
 }
 
 /* Galeria */
@@ -192,6 +207,7 @@ a {
 }
 
 /* DESCRIPCION DE IMAGEN OVERLAY */
+
 .image-container {
     position: relative;
     perspective: 1000px;
@@ -231,8 +247,33 @@ a {
     position: relative;
 }
 
+/* Descripcion de la imagen */
+.contenedor-descripcion {
+    max-width: 300px; 
+    line-height: 1.5; 
+    max-height: calc(1.5em * 3); 
+    overflow-y: scroll; 
+    padding: 10px; 
+    box-sizing: border-box; 
+}
 
-/* COMENTARIOS */
+.contenedor-descripcion::-webkit-scrollbar {
+    width: 0px; 
+}
+
+.contenedor-descripcion {
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+}
+
+.contenedor-descripcion p {
+    white-space: normal; 
+    word-wrap: break-word;
+    margin: 0; 
+}
+
+
+/* COMENTARIOS / COMUNIDAD */
 #caja-comentarios {
     padding-left: 15px;
     padding-top: 15px;

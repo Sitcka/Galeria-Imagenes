@@ -14,7 +14,7 @@
 <body>
     <nav class="navbar navbar-expand-lg fixed-top" id="navegacion">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#"><i class="text-white bi bi-person-circle"></i><span id="nombre-usuario" class="text-white"> &nbsp;{{ auth()->user()->name }}</span></a>
+            <a class="navbar-brand" href=""><span id="nombre-usuario" class="text-white"> L5V</span></a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <i class="bi bi-list navbar-toggler-icon text-white"></i>
             </button>
             <div class="collapse navbar-collapse flex justify-between" id="navbarSupportedContent">
@@ -32,13 +32,10 @@
                     @endif
                 </ul>
                 <ul class="navbar-nav mb-2 mb-lg-0 ms-lg-4 order-lg-last">
-                    <li class="nav-item dropdown">
-                        <a class="text-white nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-gear-fill text-white"></i></a>
+                    <li class="nav-item dropdown d-flex align-items-center">
+                        <a href="{{ route('usuario.show', auth()->user()->id) }}"> <img img src="{{ auth()->user()->image_profile ? asset('storage/' .auth()->user()->image_profile) : asset('storage/image_profiles/defecto_usuario.png') }}" alt="Imagen de Perfil" class="imagen-usuario-navegacion rounded-circle"></a>
+                        <a class="text-white nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{ route('usuario.show', auth()->user()->id) }}">Perfil</a></li>
-                            <li>
-                                <hr class="dropdown-divider" />
-                            </li>
                             <li><a class="dropdown-item" href="{{ route('galeria_imagenes.usuario.edit', auth()->user()->id) }}">Configuracion</a></li>
                             <li>
                                 <form method="POST" action="{{ route('logout') }}">
@@ -63,7 +60,7 @@
                 </div>
                 <div class="modal-body text-center p-3 text-large">
                     <h3 class="modal-title"> ¿Aún no eres premium?</h3>
-                    <h5 class="modal-title" >¡Ahora es el momento!</h5>
+                    <h5 class="modal-title">¡Ahora es el momento!</h5>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>

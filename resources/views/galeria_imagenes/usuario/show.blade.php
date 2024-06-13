@@ -11,17 +11,23 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
 <section class="container mb-5">
     <!-- Operaciones para el usuario -->
     <div class="operaciones">
+        <!-- Informacion del perfil -->
+        <div class="d-flex flex-column align-items-start justify-content-center">
+            <img img src="{{ auth()->user()->image_profile ? asset('storage/' .auth()->user()->image_profile) : asset('storage/image_profiles/defecto_usuario.png') }}" alt="Imagen de Perfil" class="imagen-usuario-show rounded-circle">
+            <h1 class="text-dark nombre-show">{{auth()->user()->name}}</h1>
+            <h4 class="text-dark">Es un usuario {{auth()->user()->type}}.</h4>
+        </div>
         <ul class="nav justify-content-end align-items-baseline">
-            <li class="nav-item">
-                <a href="" data-bs-toggle="modal" data-bs-target="#creargaleria">
-                    <i class="bi bi-folder-plus" id="icono"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="" data-bs-toggle="modal" data-bs-target="#añadirImagen">
-                    <i class="bi bi-file-earmark-image iconos"></i>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a href="" data-bs-toggle="modal" data-bs-target="#creargaleria">
+                        <i class="bi bi-folder-plus" id="icono"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="" data-bs-toggle="modal" data-bs-target="#añadirImagen">
+                        <i class="bi bi-file-earmark-image iconos"></i>
+                    </a>
+                </li>
         </ul>
     </div>
     <!-- Fin de operaciones para el usuario -->
@@ -118,7 +124,7 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
     <!-- Imagenes subidas por el usuario -->
     <div class="row row-cols-sm-2 row-cols-md-3 row-cols-1 g-4 baguetteBoxFive gallery">
         @foreach($usuario->imagenesOrdenadas() as $imagen)
-        <div class="col cambio-color" id="imagen-perfil">
+        <div class="col cambio-color es-imagen-usuario" id="imagen-perfil">
             <div class="columna card gallery-item" id="show-usuario-container">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h5 class="card-title">{{ $imagen->titulo }}</h5>
@@ -212,7 +218,7 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
         <!-- Fin de ventana modal para eliminar la imagen -->
         <!-- Galerias creadas por el usuario -->
         @foreach($usuario->galeriasOrdenadas() as $galeria)
-        <div class="col cambio-color" id="es-galeria">
+        <div class="col cambio-color es-galeria-usuario">
             <div class="card gallery-item columna" id="show-usuario-container">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">

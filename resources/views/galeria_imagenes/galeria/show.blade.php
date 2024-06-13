@@ -46,7 +46,7 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
                                         <img src="{{ asset('storage/' . $imagen->path) }}" alt="{{ $imagen->titulo }}" class="card-img-top">
                                         <div class="card-body">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="{{$imagen->id}}" name="imagenes[]" >
+                                                <input class="form-check-input" type="checkbox" value="{{$imagen->id}}" name="imagenes[]">
                                                 <label class="form-check-label" for="imagen{{ $imagen->id }}"></label>
                                             </div>
                                             <h5 class="card-title">{{ $imagen->titulo }}</h5>
@@ -83,7 +83,9 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
                     </a>
                     <div class="description-overlay">
                         <button class="btn btn-back"><i class="bi bi-arrow-left"></i></button>
-                        <p class="description-text">{{ $imagen->descripcion }}</p>
+                        <div class="contenedor-descripcion">
+                            <p class="description-text">{{ $imagen->descripcion }}</p>
+                        </div>
                     </div>
                 </div>
                 <!-- Operaciones en la imagen de la galeria -->

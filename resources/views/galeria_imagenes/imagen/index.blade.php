@@ -12,12 +12,10 @@
                 <div class="col-xl-12 col-lg-12 col-md-12 mb-12 p-3">
                     <div class="bg-white rounded shadow-sm">
                         <div class="d-flex align-items-center g-5">
-                            <img img src="{{ auth()->user()->image_profile ? asset('storage/' . auth()->user()->image_profile) : asset('storage/image_profiles/defecto_usuario.png') }}" alt="Imagen de Perfil" class="imagen-usuario rounded-circle">
-                            <h5 class="text-dark">{{auth()->user()->name}}</h5>
+                            <img img src="{{ $imagen->usuario->image_profile ? asset('storage/' . $imagen->usuario->image_profile) : asset('storage/image_profiles/defecto_usuario.png') }}" alt="Imagen de Perfil" class="imagen-usuario rounded-circle">
+                            <h5 class="text-dark">{{$imagen->usuario->name}}</h5>
                         </div>
-                        <a class="lightbox" href="{{ asset('storage/' . $imagen->path) }}">
-                            <img src="{{ asset('storage/' . $imagen->path) }}" alt="{{ $imagen->titulo }}" class="img-fluid card-img-top tamaño-imagenes-index">
-                        </a>
+                        <img src="{{ asset('storage/' . $imagen->path) }}" alt="{{ $imagen->titulo }}" class="img-fluid card-img-top tamaño-imagenes-index" id="imagen-like">
                         <div class="p-4">
                             <h5>
                                 <p class="text-dark text-start">{{ $imagen->titulo }}</p>
@@ -96,5 +94,9 @@
             </div>
             <!-- Fin de ventana modal para eliminar un comentario -->
         </div>
+        <script>
+            const id_usuario_autenticado = '{{auth()->user()->id}}';
+        </script>
+
 </section>
 @endsection

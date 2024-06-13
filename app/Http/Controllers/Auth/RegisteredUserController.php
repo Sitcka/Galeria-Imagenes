@@ -45,6 +45,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('imagen.index', absolute: false));
+        return redirect(route('usuario.show', $user->id));
     }
 }

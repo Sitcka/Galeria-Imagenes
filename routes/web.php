@@ -15,6 +15,7 @@ Route::get('/', function () {
 
 
 
+Route::resource('/usuario', UserController::class)->middleware(['auth','verified']);
 Route::resource('/imagen', ImageController::class)->middleware(['auth', 'verified']);
 Route::put('/imagen/{id}/editarImagenGaleria', [ImageController::class, 'editarImagenGaleria'])->name('imagen.editarImagenGaleria');
 Route::middleware('auth')->group(function () {
@@ -27,7 +28,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/galeria/{id}/agregarImagenes', [GaleryController::class, 'agregarImagenes'])->name('galeria.agregarImagenes');
     // Creo una ruta para poder eliminar una imagen de la galeria de la tabla pivote, es decir un registro de aquella tabla
     Route::delete('/galeria/{id}/eliminarImagen', [GaleryController::class, 'eliminarImagen'])->name('galeria.eliminarImagen');
-    Route::resource('/usuario', UserController::class);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('galeria_imagenes.usuario.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('galeria_imagenes.usuario.configuracion.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('galeria_imagenes.usuario.configuracion.destroy');
