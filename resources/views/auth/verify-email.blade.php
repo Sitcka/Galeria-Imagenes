@@ -1,6 +1,7 @@
 @extends('layouts.autenticacion') <!-- Cambia esto según el layout que estés usando -->
 @section('content')
 
+    
     <div class="card-header">{{ __('Verifica tu dirección de correo electrónico') }}</div>
 
     <div class="card-body">

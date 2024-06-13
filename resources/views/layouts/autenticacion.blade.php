@@ -15,6 +15,7 @@
 
     <body>
         <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
+            <h1>L5V</h1>
             <div class="card shadow-sm w-100" style="max-width: 400px;">
                 <div class="card-body">
                     @yield('content')

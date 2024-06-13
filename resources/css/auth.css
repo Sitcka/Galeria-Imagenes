@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+
+@font-face {
+    font-family: 'Rimo-Sans-Serif';
+    src: url(../Font/rimo-sans-serif/Rimo-Regular.ttf);
+}
 body {
     background-color: #E9ECF4;
 }
@@ -7,3 +13,14 @@ body {
     height: 150px;
     object-fit: cover;
 }
+
+*:not(p, input) {
+    font-family: 'Rimo-Sans-Serif';
+    font-weight: lighter;
+}
+
+p, input {
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+}
+

@@ -15,7 +15,9 @@
         @if (Route::has('login'))
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="navegacion">
             <div class="container">
-                <div class="navbar-brand text-white">L5V</div>
+                <div class="navbar-brand text-white">
+                    <h1>L5V</h1>
+                </div>
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="bi bi-list navbar-toggler-icon text-white"></i>
                 </button>
@@ -56,7 +58,7 @@
                             <i class="bi bi-people-fill"></i>
                             <p class="experiencia-titulo mx-2">Comunidad</p>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras laoreet, odio eget fringilla scelerisque, sem purus fringilla mauris, nec ultricies nisl nisl sit amet dolor. </p>
+                        <p>Compartir imágenes con otras personas es una forma instantánea de conectar y expresar momentos especiales. Desde celebraciones hasta paisajes impresionantes, cada imagen compartida cuenta una historia única y crea lazos emocionales entre amigos y familiares alrededor del mundo. </p>
                     </div>
                     <div class="imagen-contenedor">
                         <img src="{{asset('images/comunidad.jpg')}}" alt="Comunidad" class="img-fluid rounded-end rounded-start">
@@ -68,7 +70,7 @@
                             <i class="bi bi-columns-gap"></i>
                             <p class="experiencia-titulo mx-2">Galeria</p>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras laoreet, odio eget fringilla scelerisque, sem purus fringilla mauris, nec ultricies nisl nisl sit amet dolor. </p>
+                        <p>Crea galerías de imágenes online para compartir y organizar tus momentos favoritos de manera visualmente atractiva y accesible desde cualquier dispositivo. Comparte tus experiencias con amigos y familiares en galerías personalizadas que reflejen tu estilo único y tus memorias más preciadas.</p>
                     </div>
                     <div class="imagen-contenedor">
                         <img src="{{asset('images/galeria_imagenes.jpg')}}" alt="Galeria imagenes" class="img-fluid rounded-end rounded-start">
@@ -80,7 +82,7 @@
                             <i class="bi bi-images"></i>
                             <p class="experiencia-titulo mx-2">Imagenes</p>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras laoreet, odio eget fringilla scelerisque, sem purus fringilla mauris, nec ultricies nisl nisl sit amet dolor. </p>
+                        <p>Subir imágenes online te permite almacenar y compartir tus fotos de manera rápida y sencilla. Mantén tus recuerdos seguros y accesibles desde cualquier dispositivo, y comparte tus momentos favoritos con amigos y familiares al instante.</p>
                     </div>
                     <div class="imagen-contenedor">
                         <img src="{{asset('images/subir_imagen.jpg')}}" alt="Subir imagen" class="img-fluid rounded-end rounded-start">
@@ -141,7 +143,7 @@
 
     <!-- Footer  -->
     <footer class="seccion-oscura d-flex flex-column align-items-center justify-content-center">
-        <img class="footer-logo" src=" " alt="Logo L5V">
+        <h1 class="text-white">L5V</h1>
         <div class="iconos-redes-sociales d-flex flex-wrap align-items-center justify-content-center">
             <a href="https://x.com/iniciarsesion?lang=es" target="_blank" rel="noopener noreferrer">
                 <i class="bi bi-twitter"></i>
