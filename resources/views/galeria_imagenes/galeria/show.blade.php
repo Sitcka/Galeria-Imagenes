@@ -49,8 +49,6 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
                                                 <input class="form-check-input" type="checkbox" value="{{$imagen->id}}" name="imagenes[]">
                                                 <label class="form-check-label" for="imagen{{ $imagen->id }}"></label>
                                             </div>
-                                            <h5 class="card-title">{{ $imagen->titulo }}</h5>
-                                            <p class="card-text">{{ $imagen->descripcion }}</p>
                                         </div>
                                     </div>
                                 </div>

@@ -17,17 +17,27 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
             <h1 class="text-dark nombre-show">{{auth()->user()->name}}</h1>
             <h4 class="text-dark">Es un usuario {{auth()->user()->type}}.</h4>
         </div>
-        <ul class="nav justify-content-end align-items-baseline">
-                <li class="nav-item">
-                    <a href="" data-bs-toggle="modal" data-bs-target="#creargaleria">
-                        <i class="bi bi-folder-plus" id="icono"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="" data-bs-toggle="modal" data-bs-target="#añadirImagen">
-                        <i class="bi bi-file-earmark-image iconos"></i>
-                    </a>
-                </li>
+        <ul class="nav justify-content-between align-items-baseline">
+            <li class="nav-item cambio-color">
+                <a class="columna nav-link" id="mostrar-imagenes" href=" ">
+                    <i class="bi bi-images iconos" id="iconos-show-usuario"></i>
+                </a>
+            </li>
+            <li class="nav-item cambio-color">
+                <a class="columna nav-link" id="mostrar-galerias" href=" ">
+                    <i class="bi bi-collection iconos" id="iconos-show-usuario"></i>
+                </a>
+            </li>
+            <li class="nav-item cambio-color">
+                <a class="columna nav-link active" aria-current="page" href=" " data-bs-toggle="modal" data-bs-target="#creargaleria">
+                    <i class="bi bi-folder-plus iconos" id="iconos-show-usuario"></i>
+                </a>
+            </li>
+            <li class="nav-item cambio-color">
+                <a class="columna nav-link active" aria-current="page" href=" " data-bs-toggle="modal" data-bs-target="#añadirImagen">
+                    <i class="bi bi-file-earmark-image iconos" id="iconos-show-usuario"></i>
+                </a>
+            </li>
         </ul>
     </div>
     <!-- Fin de operaciones para el usuario -->
@@ -136,7 +146,9 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
                     </a>
                     <div class="description-overlay">
                         <button class="btn btn-back"><i class="bi bi-arrow-left"></i></button>
-                        <p class="description-text">{{ $imagen->descripcion }}</p>
+                        <div class="contenedor-descripcion">
+                            <p class="description-text">{{ $imagen->descripcion }}</p>
+                        </div>
                     </div>
                 </div>
                 <div class="overlay">
@@ -257,7 +269,9 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
                         </div>
                         <div class="description-overlay">
                             <button class="btn btn-back"><i class="bi bi-arrow-left"></i></button>
-                            <p class="description-text">{{ $imagen->descripcion }}</p>
+                            <div class="contenedor-descripcion">
+                                <p class="description-text">{{ $galeria->descripcion }}</p>
+                            </div>
                         </div>
                     </div>
                     <div class="overlay">
@@ -347,6 +361,31 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
                 },
                 buttons: false
             });
+            // Evento para mostrar galerias e imagenes
+            const mostrar_imagenes_usuario = document.getElementById('mostrar-imagenes');
+            const mostrar_galerias_usuario = document.getElementById('mostrar-galerias');
+            const imagenes = document.querySelectorAll('.es-imagen-usuario');
+            const galerias = document.querySelectorAll('.es-galeria-usuario');
+
+            function mostrar_accion(mostrar, ocultar) {
+                ocultar.forEach(elementos => {
+                    elementos.style.display = 'none';
+                });
+
+                mostrar.forEach(elementos => {
+                    elementos.style.display = 'block';
+                    elementos.classList.add('fade-in');
+                });
+            }
+
+            mostrar_imagenes_usuario.addEventListener('click', function() {
+                mostrar_accion(imagenes, galerias);
+            });
+
+            mostrar_galerias_usuario.addEventListener('click', function() {
+                mostrar_accion(galerias, imagenes);
+            });
+
         });
     </script>
 </section>

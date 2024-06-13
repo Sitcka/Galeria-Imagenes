@@ -20,7 +20,7 @@
                             <h5>
                                 <p class="text-dark text-start">{{ $imagen->titulo }}</p>
                             </h5>
-                            <p class="small text-muted mb-2">{{ $imagen->descripcion }}</p>
+                            <p class="small text-muted mb-2" style="word-break:break-all">{{ $imagen->descripcion }}</p>
                             <i class="bi bi-heart"></i>
                             <a href="#" class="text-dark" data-bs-toggle="modal" data-bs-target="#comentarUsuario" data-idComentarioImagen="{{ $imagen->id }}" data-tituloComentarioImagen="{{ $imagen->titulo }}" data-descripcionComentarioImagen="{{ $imagen->descripcion }}" data-comentarios="{{ $imagen->comentariosImagen()->toJson() }}" data-pathImagenComentario="{{asset('storage/' . $imagen->path)}}">
                                 <i class="bi bi-chat"></i>
@@ -44,7 +44,7 @@
                                     <h5>
                                         <p class="text-dark text-center" id="titulo-modalComentario"></p>
                                     </h5>
-                                    <p class="small text-muted mb-2" id="descripcion-modalComentario"></p>
+                                    <p class="small text-muted mb-2" id="descripcion-modalComentario" ></p>
                                 </div>
                                 <hr>
                             </div>

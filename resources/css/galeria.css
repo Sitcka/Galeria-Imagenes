@@ -25,6 +25,7 @@ body {
     border-radius: 50%;
 }
 
+
 .cambio-color .columna:hover .description-overlay {
     color: white;
     background-color: #1b1b32;
@@ -84,11 +85,13 @@ a {
     width: 50px;
     margin: 10px 10px 20px 10px;
 }
+
 .imagen-usuario-show {
     height: 200px;
     width: 200px;
     margin: 10px 10px 20px 10px;
 }
+
 .imagen-usuario-navegacion {
     height: 40px;
     width: 40px;
@@ -249,27 +252,27 @@ a {
 
 /* Descripcion de la imagen */
 .contenedor-descripcion {
-    max-width: 300px; 
-    line-height: 1.5; 
-    max-height: calc(1.5em * 3); 
-    overflow-y: scroll; 
-    padding: 10px; 
-    box-sizing: border-box; 
+    max-width: 300px;
+    line-height: 1.5;
+    max-height: calc(1.5em * 3);
+    overflow-y: scroll;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 .contenedor-descripcion::-webkit-scrollbar {
-    width: 0px; 
+    width: 0px;
 }
 
 .contenedor-descripcion {
-    -ms-overflow-style: none;  
-    scrollbar-width: none;  
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .contenedor-descripcion p {
-    white-space: normal; 
+    white-space: normal;
     word-wrap: break-word;
-    margin: 0; 
+    margin: 0;
 }
 
 
@@ -284,6 +287,10 @@ a {
     scrollbar-width: thin;
     overflow-y: auto;
     width: 100%;
+    word-wrap: break-word;
+}
+
+#caja-comentarios p{
     word-wrap: break-word;
 }
 
@@ -318,46 +325,46 @@ a {
 
 /* Formulario hacer comentario */
 .formulario-comentario {
-    width: 100%; 
+    width: 100%;
 }
 
 .formulario-comentario>.entrada-comentario {
-    background-color: #f0f0f0; 
-    height: 50px; 
-    overflow: hidden; 
+    background-color: #f0f0f0;
+    height: 50px;
+    overflow: hidden;
     position: relative;
 }
 
 .formulario-comentario>.entrada-comentario>textarea {
     border-radius: 5px;
-    background-color: #f0f0f0; 
-    border: none; 
-    flex-grow: 1; 
+    background-color: #f0f0f0;
+    border: none;
+    flex-grow: 1;
     padding: 10px;
-    margin: 0; 
-    box-sizing: border-box; 
-    box-shadow: none; 
-    outline: none; 
-    resize: none; 
-    font-family: inherit; 
-    font-size: 14px; 
-    line-height: 1.5; 
-    height: 100%; 
-    overflow-y: hidden; 
+    margin: 0;
+    box-sizing: border-box;
+    box-shadow: none;
+    outline: none;
+    resize: none;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.5;
+    height: 100%;
+    overflow-y: hidden;
 }
 
 .formulario-comentario>.entrada-comentario>button {
-    border: none; 
-    background-color: transparent; 
-    cursor: pointer; 
-    position: absolute; 
-    right: 25px; 
-    top: 50%; 
-    transform: translateY(-50%); 
-    padding: 0; 
-    margin: 0; 
-    font-size: 16px; 
-    color: #007bff; 
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    color: #007bff;
 }
 
 /* Animacion para eliminar comentario */
@@ -377,11 +384,13 @@ a {
 .eliminar-animacion {
     animation: eliminarComentario 0.5s ease-in-out forwards;
 }
+
 /* Animacion para eliminar mensaje de error de la galeria */
 @keyframes fadeOut {
     from {
         opacity: 1;
     }
+
     to {
         opacity: 0;
     }
@@ -389,4 +398,19 @@ a {
 
 .desaparecer {
     animation: fadeOut 1s forwards;
+}
+
+/* Animacion para aparecer imagenes o galerias */
+.fade-in {
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
