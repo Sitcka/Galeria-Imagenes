@@ -18,6 +18,13 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
             </li>
         </ul>
     </div>
+    <!-- Error de suibir imagenes dupplicadas -->
+    @if (session('error'))
+    <div id="mensaje-error-imagenes-duplicadas" class="alert alert-warning mt-3" role="alert">
+        {{ session('error') }}
+    </div>
+    <!-- Fin de eror de imagenes duplicadas -->
+    @endif
     <!-- Agregar nuevas imagenes ya insertadas por el usuario mediante un modal -->
     <div class="modal fade" id="creargaleria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -27,10 +34,11 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('galeria.añadirImagenes', $galeria->id)}}" method="post" id="crearGaleria">
+                    <form action="{{route('galeria.agregarImagenes', $galeria->id)}}" method="post" id="crearGaleria">
                         @csrf
                         <div class="mb-3">
                             <label for="imagenes" class="col-form-label">Selecciona las imagenes:</label>
+                            <div id="error-validacion" class="text-warning"></div>
                             <div class="row row-cols-1 row-cols-md-3 g-4">
                                 @foreach(auth()->user()->imagenesOrdenadas() as $imagen)
                                 <div class="col" id="imagen-perfil">
@@ -38,7 +46,7 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
                                         <img src="{{ asset('storage/' . $imagen->path) }}" alt="{{ $imagen->titulo }}" class="card-img-top">
                                         <div class="card-body">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="{{$imagen->id}}" name="imagenes[]">
+                                                <input class="form-check-input" type="checkbox" value="{{$imagen->id}}" name="imagenes[]" >
                                                 <label class="form-check-label" for="imagen{{ $imagen->id }}"></label>
                                             </div>
                                             <h5 class="card-title">{{ $imagen->titulo }}</h5>
@@ -54,11 +62,12 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-dark" form="crearGaleria">Agregar</button>
+                    <button type="submit" class="btn btn-dark" id="agregar-imagenes-nuevas" form="crearGaleria">Agregar</button>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Fin de agregar nuevas imagenes -->
     <hr>
     <div class="row row-cols-sm-2 row-cols-md-3 row-cols-1 g-4 baguetteBoxFour gallery">
         @foreach($galeria->imagenesGaleria() as $imagen)

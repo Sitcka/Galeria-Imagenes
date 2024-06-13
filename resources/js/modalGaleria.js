@@ -1,4 +1,31 @@
 // Javascript de bootstrap para uso del modal
+// Evento para eliminar el mensaje de error de imagenes duplicadas
+let imagenes_duplicadas = document.getElementById('mensaje-error-imagenes-duplicadas');
+if (imagenes_duplicadas !== null) {
+    setTimeout(() => {
+        imagenes_duplicadas.classList.add('desaparecer');
+        setTimeout(() => {
+            imagenes_duplicadas.remove();
+        }, 1000);
+    }, 3000);
+}
+
+// Evento para validar imagenes: El usuario debera elegir por lo menos una imagen.
+document.getElementById('agregar-imagenes-nuevas').addEventListener('click', function (event) {
+    const elegir_imagenes = document.querySelectorAll('input[name="imagenes[]"]:checked');
+    const error_validacion = document.getElementById('error-validacion');
+    if (elegir_imagenes.length === 0) {
+        event.preventDefault();
+        error_validacion.textContent = 'Selecciona como minimo una imagen.';
+    } else {
+        error_validacion.textContent = '';
+    }
+    if(error_validacion !== null){
+        setTimeout(()=>{
+            error_validacion.textContent = '';
+        },3000);
+    }
+});
 // Modal
 const exampleModal = document.getElementById('creargaleria');
 if (exampleModal) {

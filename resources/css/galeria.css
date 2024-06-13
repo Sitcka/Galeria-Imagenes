@@ -73,7 +73,8 @@ a {
     width: 50%;
     margin-top: 100px;
 }
-.imagen-usuario{
+
+.imagen-usuario {
     height: 50px;
     width: 50px;
     margin: 10px 10px 20px 10px;
@@ -270,8 +271,52 @@ a {
 }
 
 /* Modal Body */
-.modal-body{
+.modal-body {
     padding: 0;
+}
+
+/* Formulario hacer comentario */
+.formulario-comentario {
+    width: 100%; 
+}
+
+.formulario-comentario>.entrada-comentario {
+    background-color: #f0f0f0; 
+    height: 50px; 
+    overflow: hidden; 
+    position: relative;
+}
+
+.formulario-comentario>.entrada-comentario>textarea {
+    border-radius: 5px;
+    background-color: #f0f0f0; 
+    border: none; 
+    flex-grow: 1; 
+    padding: 10px;
+    margin: 0; 
+    box-sizing: border-box; 
+    box-shadow: none; 
+    outline: none; 
+    resize: none; 
+    font-family: inherit; 
+    font-size: 14px; 
+    line-height: 1.5; 
+    height: 100%; 
+    overflow-y: hidden; 
+}
+
+.formulario-comentario>.entrada-comentario>button {
+    border: none; 
+    background-color: transparent; 
+    cursor: pointer; 
+    position: absolute; 
+    right: 25px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    padding: 0; 
+    margin: 0; 
+    font-size: 16px; 
+    color: #007bff; 
 }
 
 /* Animacion para eliminar comentario */
@@ -290,4 +335,17 @@ a {
 
 .eliminar-animacion {
     animation: eliminarComentario 0.5s ease-in-out forwards;
+}
+/* Animacion para eliminar mensaje de error de la galeria */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.desaparecer {
+    animation: fadeOut 1s forwards;
 }

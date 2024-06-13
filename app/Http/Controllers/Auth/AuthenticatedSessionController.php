@@ -28,7 +28,13 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('imagen.index', absolute: false));
+        $user = Auth::user();
+
+        if ($user->type === 'normal') {
+            return redirect()->intended(route('usuario.show', $user->id));
+        } else {
+            return redirect()->intended(route('imagen.index'));
+        }
     }
 
     /**

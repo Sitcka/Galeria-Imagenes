@@ -31,7 +31,7 @@ class GaleryController extends Controller
     {
         //
         $request->validate([
-            'titulo' => ['required',`regex:/^[a-zA-Z0-9.,()"' ]+$/`,'max:30'],
+            'titulo' => ['required', `regex:/^[a-zA-Z0-9.,()"' ]+$/`, 'max:30'],
             'descripcion' => ['nullable', `regex:/^[a-zA-Z0-9.,()"' ]+$/`, 'max:100'],
             'usuario_id' => ['required', 'numeric'],
             'imagenes' => ['nullable', 'array']
@@ -69,7 +69,7 @@ class GaleryController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'titulo' => ['required',`regex:/^[a-zA-Z0-9.,()"' ]+$/`,'max:30'],
+            'titulo' => ['required', `regex:/^[a-zA-Z0-9.,()"' ]+$/`, 'max:30'],
             'descripcion' => ['nullable', `regex:/^[a-zA-Z0-9.,()"' ]+$/`, 'max:100'],
             'usuario_id' => ['required', 'numeric'],
         ]);
@@ -91,16 +91,24 @@ class GaleryController extends Controller
     /**
      * 
      * Funcion para añadir imagenes a una galeria creada anteriormente, 
-     * pero solo con imagenes que ya existan del usuario
+     * pero solo con imagenes que ya existan del usuario y que no se
+     * repitan en la galeria
      * Esto perteneciente a la tabla pivote
      * 
      */
-    public function añadirImagenes(Request $request, string $id)
+    public function agregarImagenes(Request $request, string $id)
     {
         $galeria = Galery::findOrFail($id);
         if ($request->has('imagenes')) {
-            $galeria->imagenes()->attach($request->imagenes);
-            return redirect()->route('galeria.show', $galeria->id);
+            $imagenes_formulario = $request->input('imagenes');
+            $imagenes_existentes = $galeria->imagenes->pluck('id')->toArray();
+            $agregar_imagenes = array_diff($imagenes_formulario, $imagenes_existentes);
+            if (!empty($agregar_imagenes)) {
+                $galeria->imagenes()->attach($agregar_imagenes);
+                return redirect()->route('galeria.show', $galeria->id);
+            } else {
+                return redirect()->route('galeria.show', $galeria->id)->with('error', 'Recuerda que no puedes añadir una imagen que ya este en la galeria. Solo se agregaran las imagenes que no existan en la galeria');
+            }
         }
     }
 

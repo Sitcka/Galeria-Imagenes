@@ -19,7 +19,17 @@
             </button>
             <div class="collapse navbar-collapse flex justify-between" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><a class="nav-link active text-white" aria-current="page" href="{{ route('imagen.index') }}">Comunidad</a></li>
+                    @if(auth()->user()->type === 'premium')
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" href="{{ route('imagen.index') }}">Comunidad</a>
+                    </li>
+                    @else
+                    <li class="nav-item">
+                        <a class="text-white nav-link " href="" id="comunidad-link" data-bs-toggle="modal" data-bs-target="#actualizarPremium">
+                            Comunidad<i class="bi bi-lock"></i>
+                        </a>
+                    </li>
+                    @endif
                 </ul>
                 <ul class="navbar-nav mb-2 mb-lg-0 ms-lg-4 order-lg-last">
                     <li class="nav-item dropdown">
@@ -40,8 +50,32 @@
                     </li>
                 </ul>
             </div>
-        </>
+            </>
     </nav>
+    <!-- Modal para convertirse en premium -->
+    <!-- Modal para convertir usuario a premium -->
+    <div class="modal fade" id="actualizarPremium" tabindex="-1" aria-labelledby="upgradeToPremiumModalLabel" aria-hidden="true" style="padding:200px;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="upgradeToPremiumModalLabel">¡Hazte Premium!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-3 text-large">
+                    <h3 class="modal-title"> ¿Aún no eres premium?</h3>
+                    <h5 class="modal-title" >¡Ahora es el momento!</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <form action="{{route('user.actualizarPremium')}}" method="POST" id="upgradeForm">
+                        @csrf
+                        <button type="submit" class="btn btn-dark">Premium</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin de Modal para convertirse en premium -->
     @yield('content')
 </body>
 

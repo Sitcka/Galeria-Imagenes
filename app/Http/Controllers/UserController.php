@@ -66,4 +66,18 @@ class UserController extends Controller
     {
         //
     }
+
+    /**
+     * Actualiza a un usuario normal en premium
+     */
+    public function actualizarPremium ()
+    {
+        $user = auth()->user();
+        $user->type = 'premium';
+        $user->save();
+
+        auth()->logout(); // Cerrar sesión del usuario
+
+        return redirect()->route('login')->with('success', '¡Ahora eres un usuario premium! Inicia sesión nuevamente.');
+    }
 }

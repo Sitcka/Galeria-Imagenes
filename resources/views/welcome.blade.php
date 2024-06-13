@@ -22,9 +22,15 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
                         @auth
+                        @if(auth()->user()->type === 'premium')
                         <li class="nav-item">
-                            <a href="{{ url('/imagen') }}" class="nav-link text-white">Galeria</a>
+                            <a class="nav-link active text-white" href="{{ url('imagen/') }}">Galeria</a>
                         </li>
+                        @else
+                        <li class="nav-item">
+                            <a class="text-white nav-link " href="{{route('usuario.show',auth()->user()->id)}}">Galeria</a>
+                        </li>
+                        @endif
                         @else
                         <li class="nav-item">
                             <a href="{{ route('login') }}" class="nav-link text-white">Iniciar Sesion</a>

@@ -1,7 +1,7 @@
 @extends('galeria_imagenes.common.principal')
 @section('title', 'Inicio | Home')
 @vite('resources/js/modalIndexUsuario.js')
-<!-- @vite('resources/js/modalUsuario.js') -->
+@vite('resources/js/validacion-comentario.js')
 @section('content')
 
 <section>
@@ -12,8 +12,8 @@
                 <div class="col-xl-12 col-lg-12 col-md-12 mb-12 p-3">
                     <div class="bg-white rounded shadow-sm">
                         <div class="d-flex align-items-center g-5">
-                        <img img src="{{ auth()->user()->image_profile ? asset('storage/' . auth()->user()->image_profile) : asset('storage/image_profiles/defecto_usuario.png') }}" alt="Imagen de Perfil" class="imagen-usuario rounded-circle">
-                        <h5 class="text-dark">{{auth()->user()->name}}</h5>
+                            <img img src="{{ auth()->user()->image_profile ? asset('storage/' . auth()->user()->image_profile) : asset('storage/image_profiles/defecto_usuario.png') }}" alt="Imagen de Perfil" class="imagen-usuario rounded-circle">
+                            <h5 class="text-dark">{{auth()->user()->name}}</h5>
                         </div>
                         <a class="lightbox" href="{{ asset('storage/' . $imagen->path) }}">
                             <img src="{{ asset('storage/' . $imagen->path) }}" alt="{{ $imagen->titulo }}" class="img-fluid card-img-top tamaño-imagenes-index">
@@ -51,17 +51,19 @@
                                 <hr>
                             </div>
                             <!-- Comentarios hecho por los usuarios -->
-                            <div class="comentarios" id="caja-comentarios"></div>
+                            <div class="comentarios" id="caja-comentarios">
+                            </div>
                             <!-- Fin comentarios hecho por los usuarios -->
                             <!-- Formulario para agregar comentario -->
                             <form class="formulario-comentario" id="comentario-formularioModal">
                                 @csrf
-                                <div class="container-fluid d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-                                    <input style="border: none;background-color: transparent;flex-grow: 1; padding: 0;margin: 0;height: auto;box-shadow: none; outline: none;" type="text" name="texto">
+                                <div class="container-fluid d-flex align-items-center justify-content-between rounded-pill bg-ligth px-2 py-1 mt-3 entrada-comentario">
+                                    <textarea name="texto" id="comentario_texto" placeholder="Tu comentario aqui..."></textarea>
                                     <input type="hidden" name="imagen_id" id="id_imagenModal">
                                     <input type="hidden" name="usuario_id" value="{{ auth()->user()->id }}">
                                     <button type="submit" class="btn" name="ienviar"><i class="bi bi-send"></i></button>
                                 </div>
+                                <div id="mensaje-limite-caracteres" class="text-primary-emphasis mt-2"></div>
                             </form>
                             <!-- Fin de formulario para comentar -->
                         </div>

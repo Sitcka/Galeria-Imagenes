@@ -35,7 +35,7 @@ class CommentImageController extends Controller
     {
         //
         $request->validate([
-            'texto' => 'required | regex:/[a-zA-Z]+/ | max:100',
+            'texto' => 'required | regex:/[a-zA-Z0-9]+/ | max:170',
             'usuario_id' => 'required | numeric',
             'imagen_id' => 'required | numeric'
         ]);
