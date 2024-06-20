@@ -1,19 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Mostrar Opercaiones de la galeria Eliminar/Editar
-    const toggleButtons = document.querySelectorAll('.mostrar-operaciones');
+     // Evento para mostrar galerias e imagenes
+            const mostrar_imagenes_usuario = document.getElementById('mostrar-imagenes');
+            const mostrar_galerias_usuario = document.getElementById('mostrar-galerias');
+            const imagenes = document.querySelectorAll('.es-imagen-usuario');
+            const galerias = document.querySelectorAll('.es-galeria-usuario');
 
-    toggleButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const id = button.getAttribute('data-id');
-            const operations = document.getElementById(`operaciones-imagen-${id}`);
-            
-            if (operations.classList.contains('d-none')) {
-                operations.classList.remove('d-none');
-                operations.classList.add('d-flex');
-            } else {
-                operations.classList.remove('d-flex');
-                operations.classList.add('d-none');
+            function mostrar_accion(mostrar, ocultar) {
+                ocultar.forEach(elementos => {
+                    elementos.style.display = 'none';
+                });
+
+                mostrar.forEach(elementos => {
+                    elementos.style.display = 'block';
+                    elementos.classList.add('fade-in');
+                });
             }
-        });
-    });
+
+            mostrar_imagenes_usuario.addEventListener('click', function() {
+                mostrar_accion(imagenes, galerias);
+            });
+
+            mostrar_galerias_usuario.addEventListener('click', function() {
+                mostrar_accion(galerias, imagenes);
+            });
 });

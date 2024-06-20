@@ -50,7 +50,11 @@ class ImageController extends Controller
             $imagen->usuario_id = $request->usuario_id;
             $imagen->save();
         }
-        return redirect()->route('imagen.index');
+        if (auth()->user()->type != 'premium') {
+            return redirect()->route('usuario.show', auth()->user()->id);
+        } else {
+            return redirect()->route('imagen.index');
+        }
     }
 
     /**

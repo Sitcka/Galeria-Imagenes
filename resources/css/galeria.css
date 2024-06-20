@@ -173,7 +173,7 @@ a {
 
 .tamaño-imagenes-index {
     width: 100%;
-    /* height: 600px; */
+    height: 600px;
     object-fit: contain;
 }
 

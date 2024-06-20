@@ -95,6 +95,8 @@
             <!-- Fin de ventana modal para eliminar un comentario -->
         </div>
         <script>
+            // Esta variable es para poder saber que usuario es el que esta autenticado y en base a esto, agregar un icono de 
+            // eliminar al lado del comentario solamente al usuario que hizo ese comentario 
             const id_usuario_autenticado = '{{auth()->user()->id}}';
         </script>
 

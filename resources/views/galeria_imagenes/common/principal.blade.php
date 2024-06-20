@@ -49,7 +49,6 @@
             </div>
             </>
     </nav>
-    <!-- Modal para convertirse en premium -->
     <!-- Modal para convertir usuario a premium -->
     <div class="modal fade" id="actualizarPremium" tabindex="-1" aria-labelledby="upgradeToPremiumModalLabel" aria-hidden="true" style="padding:200px;">
         <div class="modal-dialog">

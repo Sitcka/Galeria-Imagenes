@@ -16,8 +16,17 @@ Route::get('/', function () {
 
 
 Route::resource('/usuario', UserController::class)->middleware(['auth','verified']);
-Route::resource('/imagen', ImageController::class)->middleware(['auth', 'verified']);
-Route::put('/imagen/{id}/editarImagenGaleria', [ImageController::class, 'editarImagenGaleria'])->name('imagen.editarImagenGaleria');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::resource('/imagen', ImageController::class)->except(['index']);
+    Route::get('/imagen', function () {
+        if (auth()->user()->type === 'premium') {
+            return app(ImageController::class)->index();
+        } else {
+            abort(403, 'Acceso no autorizado.');
+        }
+    })->name('imagen.index');
+    Route::put('/imagen/{id}/editarImagenGaleria', [ImageController::class, 'editarImagenGaleria'])->name('imagen.editarImagenGaleria');
+});
 Route::middleware('auth')->group(function () {
     Route::resource('/comentario', CommentImageController::class);
     Route::resource('/galeria', GaleryController::class);

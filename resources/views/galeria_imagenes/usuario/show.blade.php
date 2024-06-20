@@ -17,7 +17,7 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
             <h1 class="text-dark nombre-show">{{auth()->user()->name}}</h1>
             <h4 class="text-dark">Es un usuario {{auth()->user()->type}}.</h4>
         </div>
-        <ul class="nav justify-content-between align-items-baseline">
+        <ul class="d-flex nav justify-content-between align-items-baseline">
             <li class="nav-item cambio-color">
                 <a class="columna nav-link" id="mostrar-imagenes" href=" ">
                     <i class="bi bi-images iconos" id="iconos-show-usuario"></i>
@@ -361,31 +361,6 @@ https://cdn.jsdelivr.net/npm/baguettebox.js@1.11.1/dist/baguetteBox.min.css
                 },
                 buttons: false
             });
-            // Evento para mostrar galerias e imagenes
-            const mostrar_imagenes_usuario = document.getElementById('mostrar-imagenes');
-            const mostrar_galerias_usuario = document.getElementById('mostrar-galerias');
-            const imagenes = document.querySelectorAll('.es-imagen-usuario');
-            const galerias = document.querySelectorAll('.es-galeria-usuario');
-
-            function mostrar_accion(mostrar, ocultar) {
-                ocultar.forEach(elementos => {
-                    elementos.style.display = 'none';
-                });
-
-                mostrar.forEach(elementos => {
-                    elementos.style.display = 'block';
-                    elementos.classList.add('fade-in');
-                });
-            }
-
-            mostrar_imagenes_usuario.addEventListener('click', function() {
-                mostrar_accion(imagenes, galerias);
-            });
-
-            mostrar_galerias_usuario.addEventListener('click', function() {
-                mostrar_accion(galerias, imagenes);
-            });
-
         });
     </script>
 </section>
