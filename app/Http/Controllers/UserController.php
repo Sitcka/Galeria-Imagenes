@@ -78,6 +78,6 @@ class UserController extends Controller
 
         auth()->logout(); // Cerrar sesión del usuario
 
-        return redirect()->route('login')->with('success', '¡Ahora eres un usuario premium! Inicia sesión nuevamente.');
+        return redirect()->route('login')->with('success', '¡Ahora eres un usuario premium! Inicia sesion nuevamente.');
     }
 }
