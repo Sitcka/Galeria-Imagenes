@@ -1,6 +1,0 @@
-/vendor
-/node_modules
-/storage
-/storage/logs
-/public/storage
-/.env
